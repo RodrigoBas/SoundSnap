@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoundSnap</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">SoundSnap</div>
+    <input type="text" id="search" placeholder="O que você quer ouvir hoje?">
+    <div class="user-icon">👤</div>
+  </header>
+
+  <main>
+    <section class="filters">
+      <button>Descubra novos artistas...</button>
+      <button>Mais ouvidas hoje...</button>
+      <button>Mais ouvidas do ano...</button>
+      <button class="add">+</button>
+    </section>
+
+    <section id="albums-container" class="albums-container">
+      <!-- Álbuns carregados dinamicamente aqui -->
+    </section>
+
+    <button id="surprise-me">Me surpreenda...</button>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

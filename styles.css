@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #191013; /* Cor de fundo da página */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    width: 100%; /* Define a largura do header para ocupar toda a tela */
+    position: fixed; /* Fixa o header no topo da página */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  header .logo {
+    font-weight: bold;
+  }
+  
+  header input[type="text"] {
+    width: 60%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  header .user-icon {
+    font-size: 24px;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px; /* Adiciona espaço para o header fixo */
+    width: 100%;
+    max-width: 800px; /* Limita a largura do conteúdo principal */
+  }
+  
+  .filters {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    width: 100%;
+  }
+  
+  .filters button {
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .filters button.add {
+    font-size: 24px;
+  }
+  
+  .albums-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    align-items: center; /* Centraliza os contêineres no centro */
+    width: 100%;
+  }
+  
+  .album-card {
+    display: flex;
+    align-items: center;
+    background-color: #dacdc5; /* Cor de fundo da caixa de texto */
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 80%; /* Reduz a largura para 80% da área do contêiner */
+    max-width: 500px; /* Define um limite máximo menor para o tamanho do card */
+    height: 200px; /* Aumenta a altura do card */
+    margin-bottom: 20px;
+  }
+  
+  .album-card img {
+    width: 200px; /* Aumenta a largura da imagem */
+    height: 100%; /* Faz a imagem ocupar a altura total do contêiner */
+    object-fit: cover;
+    border-radius: 15px 0 0 15px; /* Borda arredondada para imagem à esquerda */
+  }
+  
+  .album-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* Classe para contêineres em posições ímpares */
+  .album-card-right {
+    flex-direction: row-reverse; /* Inverte a posição para imagem à direita */
+  }
+  
+  .album-card-right img {
+    border-radius: 0 15px 15px 0; /* Borda arredondada para imagem à direita */
+  }
+  
+  
+  
+  .album-info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .album-info p {
+    color: #333;
+  }
+  
+  .album-info .date {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  #surprise-me {
+    width: 100%;
+    max-width: 800px; /* Limita a largura do botão "Me Surpreenda" */
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 20px 0;
+  }
+  
