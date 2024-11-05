@@ -1,0 +1,326 @@
+html {
+    padding-bottom: 1em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #191013;
+    color: #d4cdc5;
+}
+
+header {
+    display: flex;
+    max-width: 100%;
+    justify-content: space-between;
+    background-color: #191013;
+    padding: 5px 50px;
+    align-items: center;
+    height: 4em;
+}
+
+header a {
+    height: 70%;
+    background-color: #d4cdc5;
+    border-radius: 100%;
+    padding: 5px;
+}
+
+header a img {
+    max-height: 100%;
+}
+
+#logo {
+    height: 100%;
+}
+
+form {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d4cdc5;
+    height: 45%;
+    border-radius: 70px;
+    padding-right: 10px;
+}
+
+form input,
+form input:focus {
+    border: none;
+    width: 90%;
+    background-color: #d4cdc5;
+    height: 100%;
+    border-radius: 70px;
+    padding-left: 10px;
+    font-size: 1em;
+}
+
+form button {
+    height: 80%;
+    width: 10%;
+    background-color: #191013;
+    border-radius: 70px;
+    border: none;
+    cursor: pointer;
+}
+
+form button img {
+    max-height: 100%;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2em;
+    gap: 3em;
+    background-color: #f4f4f2;
+}
+
+.descubra {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 2em;
+    align-items: center;
+}
+
+.tags {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    min-width: max-content;
+    width: 100%;
+}
+
+.tags p {
+    background-color: #191013;
+    color: #d4cdc5;
+    padding: 3px 20px;
+    border-radius: 80px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.artistas {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+}
+
+.artistas img {
+    width: 12em;
+    height: 12em;
+    border-radius: 15px;
+    border: solid 1px black;
+}
+
+.sugestao_art {
+    padding: 10px;
+    background-color: #191013;
+    border-radius: 15px;
+    color: #d4cdc5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    gap: 2em;
+}
+
+/* Estilos para os posts de álbum no feed */
+.post {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #191013;
+    border-radius: 25px;
+    padding: 20px;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.post img {
+    border-radius: 25px;
+    width: 50%; /* Aumenta o tamanho da imagem para 50% */
+    height: auto;
+    object-fit: cover;
+}
+
+.descricao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #d4cdc5;
+    border-radius: 25px;
+    padding: 20px;
+    color: #191013;
+    width: 45%; /* Reduz a largura da descrição */
+    gap: 10px;
+}
+
+.descricao h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+/* Botões de ação e contagem de likes */
+.acoes {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1em;
+}
+
+.like {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    font-size: 1.1em;
+}
+
+/* Estilos para a página de detalhes do álbum */
+#album-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em 0;
+    background-color: #191013;
+    color: #d4cdc5;
+    min-height: 100vh;
+}
+
+.album-container {
+    display: flex;
+    background-color: #191013;
+    border-radius: 15px;
+    padding: 20px;
+    gap: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #d4cdc5;
+}
+
+/* Imagem do álbum na página de detalhes */
+.album-container img {
+    border-radius: 15px;
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Informações do álbum */
+.album-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    padding: 10px 20px;
+    background-color: #dacdc5;
+    border-radius: 15px;
+    color: #191013;
+}
+
+.album-info h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.album-info .artists {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.album-info p {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Botões de ação */
+.album-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.album-actions button {
+    background-color: #191013;
+    color: #dacdc5;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+}
+
+.album-actions button:hover {
+    background-color: #333;
+}
+
+.album-actions .like-count {
+    font-size: 1em;
+    color: #dacdc5;
+}
+
+.album-tracks {
+    background-color: #dacdc5;
+    border-radius: 15px;
+    padding: 20px;
+    color: #191013;
+}
+
+.album-tracks h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+#track-list {
+    list-style: none;
+    padding: 0;
+}
+
+#track-list li {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}

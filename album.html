@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Álbum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo"><img src="logo_soundsnap_claro.png" alt="SoundSnap"></a>
+        <input type="text" id="search" placeholder="O que você quer ouvir hoje?" disabled>
+        <a href="#" class="user-icon"><img src="user.png" alt="Usuário"></a>
+    </header>
+
+    <main id="album-details">
+        <div class="album-container">
+            <div class="album-header">
+                <img id="album-cover" src="" alt="Capa do Álbum">
+                <div class="album-info">
+                    <h1 id="album-name">Nome do Álbum</h1>
+                    <p id="artist-name">Artista</p>
+                    <p id="listeners">Ouvintes mensais: <span id="monthly-listeners"></span></p>
+                </div>
+            </div>
+            <div class="album-tracks">
+                <h2>Discografia</h2>
+                <ol id="track-list"></ol>
+            </div>
+        </div>
+    </main>
+
+    <script src="album.js"></script>
+</body>
+</html>
