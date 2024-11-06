@@ -1,3 +1,7 @@
+/* ===========================
+   Estilos Gerais e Header
+=========================== */
+
 html {
     padding-bottom: 1em;
 }
@@ -7,14 +11,15 @@ html {
     padding: 0;
     outline: none;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #191013;
     color: #d4cdc5;
 }
 
+/* Header */
 header {
     display: flex;
     max-width: 100%;
@@ -38,6 +43,17 @@ header a img {
 
 #logo {
     height: 100%;
+}
+
+/* ===========================
+   Página Inicial (index.html)
+=========================== */
+
+body.index-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
 }
 
 form {
@@ -79,9 +95,7 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding-top: 2em;
     gap: 3em;
     background-color: #f4f4f2;
 }
@@ -137,6 +151,7 @@ main {
     gap: 5px;
 }
 
+/* Estilos dos posts no feed */
 .feed-container {
     display: flex;
     flex-direction: column;
@@ -145,7 +160,6 @@ main {
     gap: 2em;
 }
 
-/* Estilos para os posts de álbum no feed */
 .post {
     display: flex;
     width: 100%;
@@ -159,7 +173,7 @@ main {
 
 .post img {
     border-radius: 25px;
-    width: 50%; /* Aumenta o tamanho da imagem para 50% */
+    width: 50%;
     height: auto;
     object-fit: cover;
 }
@@ -172,7 +186,7 @@ main {
     border-radius: 25px;
     padding: 20px;
     color: #191013;
-    width: 45%; /* Reduz a largura da descrição */
+    width: 45%;
     gap: 10px;
 }
 
@@ -190,7 +204,6 @@ main {
     color: #333;
 }
 
-/* Botões de ação e contagem de likes */
 .acoes {
     display: flex;
     flex-direction: column-reverse;
@@ -203,14 +216,17 @@ main {
     gap: 15px;
 }
 
-.info {
+/* ===========================
+   Página de Detalhes do Álbum (album.html)
+=========================== */
+
+body.album-page {
     display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    font-size: 1.1em;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* Estilos para a página de detalhes do álbum */
 #album-details {
     display: flex;
     justify-content: center;
@@ -235,7 +251,6 @@ main {
     color: #d4cdc5;
 }
 
-/* Imagem do álbum na página de detalhes */
 .album-container img {
     border-radius: 15px;
     width: 50%;
@@ -243,7 +258,6 @@ main {
     object-fit: cover;
 }
 
-/* Informações do álbum */
 .album-info {
     display: flex;
     flex-direction: column;
@@ -274,7 +288,6 @@ main {
     color: #333;
 }
 
-/* Botões de ação */
 .album-actions {
     display: flex;
     gap: 15px;
@@ -298,11 +311,6 @@ main {
     background-color: #333;
 }
 
-.album-actions .like-count {
-    font-size: 1em;
-    color: #dacdc5;
-}
-
 .album-tracks {
     background-color: #dacdc5;
     border-radius: 15px;
@@ -323,4 +331,84 @@ main {
 #track-list li {
     font-size: 1.1em;
     margin-bottom: 5px;
+}
+
+/* ===========================
+   Página de Login / Registro (login.html)
+=========================== */
+
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #dacdc5;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.toggle {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.toggle h1 {
+    margin: 0 1em;
+    padding: 0.5em 0;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #191013;
+    transition: color 0.3s;
+}
+
+.toggle h1.active {
+    border-bottom: 3px solid #191013;
+    color: #191013;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+}
+
+.form h2 {
+    color: #191013;
+    font-size: 1.4em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form input {
+    padding: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+.form button {
+    padding: 0.8em;
+    border: none;
+    border-radius: 10px;
+    background-color: #191013;
+    color: #dacdc5;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form button:hover {
+    background-color: #333;
 }

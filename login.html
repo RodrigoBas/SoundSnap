@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <div class="container">
+        <div class="form-container">
+            <!-- Título e Botões de Alternância -->
+            <div class="toggle">
+                <h1 id="toggle-login" onclick="showLogin()">Login</h1>
+                <h1 id="toggle-register" onclick="showRegister()">Registro</h1>
+            </div>
+            
+            <!-- Formulário de Login -->
+            <form id="login-form" class="form" action="process_login.php" method="POST">
+                <h2>Login</h2>
+                <input type="text" name="username" placeholder="Usuário" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+
+            <!-- Formulário de Registro -->
+            <form id="register-form" class="form" action="process_register.php" method="POST" style="display: none;">
+                <h2>Registro</h2>
+                <input type="text" name="username" placeholder="Usuário" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                <input type="password" name="confirm_password" placeholder="Confirme a Senha" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Função para alternar entre login e registro
+        function showLogin() {
+            document.getElementById("login-form").style.display = "block";
+            document.getElementById("register-form").style.display = "none";
+            document.getElementById("toggle-login").classList.add("active");
+            document.getElementById("toggle-register").classList.remove("active");
+        }
+
+        function showRegister() {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("register-form").style.display = "block";
+            document.getElementById("toggle-register").classList.add("active");
+            document.getElementById("toggle-login").classList.remove("active");
+        }
+    </script>
+</body>
+</html>

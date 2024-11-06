@@ -1,82 +1,106 @@
-// Função para acessar o token
-async function acess() {
-    let c_id = "c39f13e6b0b9496882f544f1a9456d7a";
-    let c_sct = "b819c1e4cca44124bd66cbc9b5e74e79";
-    const response = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: { "content-type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-            grant_type: 'client_credentials',
-            client_id: c_id,
-            client_secret: c_sct
-        }),
-    });
-    let data = await response.json();
-    return data;
-}
+// Função para obter o token de autenticação do Spotify
+async function getToken() {
+    const clientId = "c39f13e6b0b9496882f544f1a9456d7a";
+    const clientSecret = "b819c1e4cca44124bd66cbc9b5e74e79";
 
-// Função para buscar álbuns aleatórios
-async function get_rand(token, obj) {
-    const characters = ['%25a%25', 'a%25', '%25a', '%25e%25', 'e%25', '%25e', '%25i%25', 'i%25', '%25i', '%25o%25', 'o%25', '%25o', '%25u%25', 'u%25', '%25u'];
-    const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-    const randomOffset = Math.floor(Math.random() * 999);
-    const url = `https://api.spotify.com/v1/search?query=${randomCharacter}&offset=${randomOffset}&limit=1&type=${obj}&market=NL`;
-
-    const result = await fetch(url, {
-        headers: { 'Authorization': `Bearer ${token.access_token}` }
-    });
-    return await result.json();
-}
-
-// Função para exibir os álbuns no feed e redirecionar ao clicar
-async function feed(token, offset = 0) {
-    const response = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=10&offset=${offset}`, {
-        headers: {
-            Authorization: `Bearer ${token.access_token}`
-        }
-    });
-    const data = await response.json();
-    const albums = data.albums.items;
-
-    const container = document.getElementById("feed");
-    container.innerHTML = ""; // Limpa o feed antes de renderizar os álbuns
-
-    albums.forEach(album => {
-        const albumCard = document.createElement("div");
-        albumCard.classList.add("post");
-
-        // Cria a imagem do álbum e adiciona o evento de clique para redirecionar
-        const albumImage = document.createElement("img");
-        albumImage.src = album.images[0].url;
-        albumImage.alt = album.name;
-        albumImage.style.cursor = "pointer";
-        
-        // Adiciona o evento de clique para armazenar o ID do álbum e redirecionar
-        albumImage.addEventListener("click", () => {
-            localStorage.setItem("selectedAlbumId", album.id);
-            window.location.href = "album.html";
+    try {
+        const response = await fetch("https://accounts.spotify.com/api/token", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({
+                grant_type: "client_credentials",
+                client_id: clientId,
+                client_secret: clientSecret
+            })
         });
 
-        albumCard.appendChild(albumImage);
+        if (!response.ok) {
+            console.error("Erro ao obter token:", response.statusText);
+            return null;
+        }
 
-        // Cria a seção de descrição do álbum
-        const descricao = document.createElement("div");
-        descricao.classList.add("descricao");
-        descricao.innerHTML = `
-            <h1>${album.name}</h1>
-            <p>Artista: ${album.artists.map(artist => artist.name).join(", ")}</p>
-            <p>Lançamento: ${album.release_date}</p>
-        `;
-
-        albumCard.appendChild(descricao);
-        container.appendChild(albumCard);
-    });
+        const data = await response.json();
+        console.log("Token obtido:", data.access_token);
+        return data.access_token;
+    } catch (error) {
+        console.error("Erro na função getToken:", error);
+        return null;
+    }
 }
 
-// Função principal
-async function main() {
-    const token = await acess();
-    await feed(token, 0); // Carrega o feed inicial de álbuns
+// Função para buscar álbuns aleatórios e exibi-los no feed
+async function loadAlbums() {
+    const token = await getToken();
+    if (!token) {
+        console.error("Token inválido ou não fornecido.");
+        return;
+    }
+
+    // Gera um offset aleatório para obter álbuns diferentes a cada carregamento
+    const randomOffset = Math.floor(Math.random() * 100);
+
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=10&offset=${randomOffset}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Erro ao carregar o feed de álbuns:", response.statusText);
+            return;
+        }
+
+        const data = await response.json();
+        const albums = data.albums.items;
+        const container = document.getElementById("feed");
+        container.innerHTML = ""; // Limpa o feed antes de renderizar os álbuns
+
+        albums.forEach(album => {
+            const albumCard = document.createElement("div");
+            albumCard.classList.add("post");
+
+            // Cria a imagem do álbum e adiciona o evento de clique para redirecionar
+            const albumImage = document.createElement("img");
+            albumImage.src = album.images[0].url;
+            albumImage.alt = album.name;
+            albumImage.style.cursor = "pointer";
+
+            albumImage.addEventListener("click", () => {
+                // Armazena todos os detalhes do álbum no localStorage para uso em album.html
+                localStorage.setItem("selectedAlbumId", album.id);
+                localStorage.setItem("selectedAlbumName", album.name);
+                localStorage.setItem("selectedAlbumImage", album.images[0].url);
+                localStorage.setItem("selectedAlbumArtists", album.artists.map(artist => artist.name).join(", "));
+                localStorage.setItem("selectedAlbumReleaseDate", album.release_date);
+                localStorage.setItem("selectedAlbumTotalTracks", album.total_tracks);
+                localStorage.setItem("selectedAlbumUrl", album.external_urls.spotify); // URL do álbum no Spotify
+
+                // Redireciona para a página de detalhes do álbum
+                window.location.href = "album.html";
+            });
+
+            albumCard.appendChild(albumImage);
+
+            // Cria a seção de descrição do álbum
+            const descricao = document.createElement("div");
+            descricao.classList.add("descricao");
+            descricao.innerHTML = `
+                <h1>${album.name}</h1>
+                <p>Artista(s): ${album.artists.map(artist => artist.name).join(", ")}</p>
+                <p>Lançamento: ${album.release_date}</p>
+                <p>Total de Músicas: ${album.total_tracks}</p>
+            `;
+
+            albumCard.appendChild(descricao);
+            container.appendChild(albumCard);
+        });
+    } catch (error) {
+        console.error("Erro na função loadAlbums:", error);
+    }
 }
 
-main(); // Executa a função principal ao carregar a página
+// Função principal para carregar álbuns ao iniciar a página
+loadAlbums();
